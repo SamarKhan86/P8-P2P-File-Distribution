@@ -1,0 +1,19 @@
+# Build files
+*.o
+*.out
+*.exe
+
+# Executables
+bin/
+
+# Generated files
+downloads/
+*.log
+*.csv
+
+# Editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
