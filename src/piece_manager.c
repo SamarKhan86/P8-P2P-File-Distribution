@@ -7,17 +7,17 @@ int piece_manager_init(PieceManager *manager, int piece_count)
     if (manager == NULL || piece_count < 0)
         return -1;
 
-    manager->piece_count = piece_count;
+    manager->piece_count = 0;
     manager->pieces = NULL;
 
     if (piece_count == 0)
         return 0;
 
-    manager->pieces = calloc(piece_count, sizeof(int));
-
+    manager->pieces = calloc((size_t)piece_count, sizeof(int));
     if (manager->pieces == NULL)
         return -1;
 
+    manager->piece_count = piece_count;
     return 0;
 }
 
@@ -31,7 +31,6 @@ int mark_piece(PieceManager *manager, int index)
         return -1;
 
     manager->pieces[index] = 1;
-
     return 0;
 }
 
@@ -44,7 +43,7 @@ int has_piece(PieceManager *manager, int index)
     if (index < 0 || index >= manager->piece_count)
         return 0;
 
-    return manager->pieces[index];
+    return manager->pieces[index] != 0;
 }
 
 // Find the first missing piece
@@ -69,7 +68,7 @@ void piece_manager_destroy(PieceManager *manager)
         return;
 
     free(manager->pieces);
-
     manager->pieces = NULL;
     manager->piece_count = 0;
 }
+

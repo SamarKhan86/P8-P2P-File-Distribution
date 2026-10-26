@@ -44,6 +44,9 @@ typedef struct {
 
 int peer_manager_init(PeerManager *manager);
 int peer_manager_add(PeerManager *manager, const struct Peer *peer);
+int peer_manager_discover_from_tracker(PeerManager *manager,
+                                       const char *tracker_ip,
+                                       int tracker_port);
 int peer_connect(PeerConnection *connection);
 void *connection_worker(void *arg);
 int connect_to_all_peers(PeerManager *manager, int thread_count);
